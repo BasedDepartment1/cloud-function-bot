@@ -8,7 +8,7 @@
     "Bucket": "object-storage-bucket-name",
     "AccessKey": "some_trash",
     "SecretKey": "even_more_trash",
-    "Endpoint": "domain",
+    "Endpoint": "storage.yandexcloud.net",
     "Location": "ru-central1-b",
     "Protocol": "https"
   }
