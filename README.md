@@ -1,10 +1,10 @@
 # Шаблон Telegram-бота для развертывания в виде Yandex Function
 
-Чтобы развернуть бота в YC Function для начала нужно создать аккаунт в Yandex Cloud и поставить себе yc CLI ([лучше оригинального гайда я не объясню](https://cloud.yandex.ru/docs/cli/quickstart#install))
+Чтобы развернуть бота в YC Function для начала нужно создать аккаунт в Yandex Cloud и поставить себе YC CLI ([лучше оригинального гайда я не объясню](https://cloud.yandex.ru/docs/cli/quickstart#install))
 
 Также для начала создайте себе сервисный аккаунт (ищите вкладочку в Yandex Cloud Console) 
 
-Внутри Yandex Cloud нам создать три сущности (все три можно найти во вкладке Console):
+Внутри Yandex Cloud нам нужно создать три сущности (все три можно найти во вкладке Console):
  - **Yandex Cloud Function** (там просто выберите имя, дальше пока ничего не нужно)
  - Бакет в **ObjectStorage** (тут тоже можно не запариваться над настройками, просто задайте имя). Тут можно сразу получить ключи доступа, которые нам понадабятся дальше. [Тык (см. CLI)](https://cloud.yandex.ru/docs/iam/operations/sa/create-access-key) (желательно сразу записать куда-нибудь последние две строчки ответа, а именно `key_id` и `secret`)
  - Базу данных **Managed Service for YDB** (точно так же выбрать имя, в качестве типа я выбирал Serverless)
