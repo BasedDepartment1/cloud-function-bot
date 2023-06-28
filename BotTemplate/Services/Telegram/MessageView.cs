@@ -36,7 +36,8 @@ public class HtmlMessageView : IMessageView
     {
         await Say(
             "Это шаблон telegram-бота, поддерживающий <b>Yandex Cloud Function</b>!\n" +
-                "Если он тебе нужен, то тогда тебе <a href=\"https://google.com\">сюда</a>.",
+                "Если он тебе нужен, то тогда тебе " +
+                "<a href=\"https://github.com/BasedDepartment1/cloud-function-bot\">сюда</a>.",
             chatId
         );
     }
