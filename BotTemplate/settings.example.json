@@ -1,0 +1,15 @@
+{
+  "AppSettings": {
+    "TelegramToken": "TELEGRAM_TOKEN",
+    "YDBEndpoint": "protocol://domain:port",
+    "YDBPath": "/zone/blablabla/id"
+  },
+  "CloudStorageOptions": {
+    "Bucket": "object-storage-bucket-name",
+    "AccessKey": "some_trash",
+    "SecretKey": "even_more_trash",
+    "Endpoint": "domain",
+    "Location": "ru-central1-b",
+    "Protocol": "https"
+  }
+}
