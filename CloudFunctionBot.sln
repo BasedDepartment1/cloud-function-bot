@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotTemplate", "BotTemplate\BotTemplate.csproj", "{838476AB-D822-4B6F-A4E0-E8D2EE54119B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B79A75FC-5FAF-4EFC-AF0F-4A43407A284A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{838476AB-D822-4B6F-A4E0-E8D2EE54119B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{838476AB-D822-4B6F-A4E0-E8D2EE54119B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{838476AB-D822-4B6F-A4E0-E8D2EE54119B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B79A75FC-5FAF-4EFC-AF0F-4A43407A284A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79A75FC-5FAF-4EFC-AF0F-4A43407A284A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79A75FC-5FAF-4EFC-AF0F-4A43407A284A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79A75FC-5FAF-4EFC-AF0F-4A43407A284A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
