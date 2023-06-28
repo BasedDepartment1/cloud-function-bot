@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Ydb.Sdk;
+using Ydb.Sdk.Auth;
 using Ydb.Sdk.Table;
 using Ydb.Sdk.Value;
 using Ydb.Sdk.Yc;
@@ -25,6 +27,7 @@ public class BotDatabase : IBotDatabase
                 TxControl.BeginSerializableRW().Commit(), 
                 parameters)
         );
+        
         response.Status.EnsureSuccess();
         var queryResponse = (ExecuteDataQueryResponse) response;
     
@@ -34,8 +37,7 @@ public class BotDatabase : IBotDatabase
         
     }
 
-    public async Task ExecuteModify(
-        string query, Dictionary<string, YdbValue> parameters)
+    public async Task ExecuteModify(string query, Dictionary<string, YdbValue> parameters)
     {
         using var tableClient = await CreateTableClient();
         
@@ -62,13 +64,22 @@ public class BotDatabase : IBotDatabase
 
     private async Task<TableClient> CreateTableClient()
     {
-        var metadataProvider = new MetadataProvider();
-        await metadataProvider.Initialize();
-        
+        ICredentialsProvider provider;
+
+        if (configuration.IamTokenPath is null)
+        {
+            provider = new MetadataProvider();
+            await ((MetadataProvider) provider).Initialize();
+        }
+        else
+        {
+            provider = new ServiceAccountProvider(configuration.IamTokenPath);
+        }
+
         var config = new DriverConfig(
-            configuration.YbEndpoint,
+            configuration.YdbEndpoint,
             configuration.YdbPath,
-            metadataProvider
+            provider
         );
         
         var driver = new Driver(config);

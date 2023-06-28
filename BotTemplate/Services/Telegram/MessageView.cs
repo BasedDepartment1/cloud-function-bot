@@ -35,8 +35,8 @@ public class HtmlMessageView : IMessageView
     public async Task ShowHelp(long chatId)
     {
         await Say(
-            "Это шаблон telegram-бота, поддерживающий <b>Yandex Cloud Function</b>!<br/>" +
-                "Если он тебе нужен, то тогда тебе <a href=\"\">сюда</a>.",
+            "Это шаблон telegram-бота, поддерживающий <b>Yandex Cloud Function</b>!\n" +
+                "Если он тебе нужен, то тогда тебе <a href=\"https://google.com\">сюда</a>.",
             chatId
         );
     }

@@ -7,17 +7,27 @@ public class Configuration
 {
     public YandexStorageOptions YandexStorageOptions { get; }
     public string TelegramToken => appSettings[nameof(TelegramToken)]!;
-    public string YbEndpoint => appSettings[nameof(YbEndpoint)]!;
+    public string YdbEndpoint => appSettings[nameof(YdbEndpoint)]!;
     public string YdbPath => appSettings[nameof(YdbPath)]!;
+    public string? IamTokenPath => appSettings[nameof(IamTokenPath)];
 
     private readonly IConfigurationSection appSettings;
 
-    public Configuration()
+    public Configuration(IConfigurationSection appSettings, YandexStorageOptions cloudStorageOptions)
+    {
+        this.appSettings = appSettings;
+        YandexStorageOptions = cloudStorageOptions;
+    }
+
+    public static Configuration FromJson(string path)
     {
         var configuration = new ConfigurationBuilder()
-            .AddJsonFile("/function/code/settings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile(path, optional: false, reloadOnChange: true)
             .Build();
-        appSettings = configuration.GetSection("AppSettings");
-        YandexStorageOptions = configuration.GetYandexStorageOptions("CloudStorageOptions");
+
+        return new Configuration(
+            configuration.GetSection("AppSettings"),
+            configuration.GetYandexStorageOptions("CloudStorageOptions")
+        );
     }
 }

@@ -4,19 +4,19 @@ namespace BotTemplate.Services.YDB;
 
 public class MessageDateRepo
 {
-    private static string TableName => "message_dates";
+    public virtual string TableName => "message_dates";
 
     private readonly IBotDatabase botDatabase;
 
-    private MessageDateRepo(IBotDatabase botDatabase)
+    public MessageDateRepo(IBotDatabase botDatabase)
     {
         this.botDatabase = botDatabase;
     }
 
     public static async Task<MessageDateRepo> InitWithDatabase(IBotDatabase botDatabase)
     {
-        await CreateTable(botDatabase);
         var model = new MessageDateRepo(botDatabase);
+        await model.CreateTable();
         return model;
     }
 
@@ -32,11 +32,11 @@ public class MessageDateRepo
         {
             {"$current_date", YdbValue.MakeDate(DateTime.Now)},
         });
-
+        
         return rows?.First()["user_count"].GetUint64() ?? 0;
     }
 
-    public async void UpdateOrInsertDateTime(long chatId)
+    public async void UpdateOrInsertDateTime(long chatId, DateTime? dateTime = null)
     {
         await botDatabase.ExecuteModify($@"
             DECLARE $chat_id AS Int64;
@@ -47,7 +47,7 @@ public class MessageDateRepo
         ", new Dictionary<string, YdbValue>
         {
             {"$chat_id", YdbValue.MakeInt64(chatId)},
-            {"$date_time", YdbValue.MakeDatetime(DateTime.Now)},
+            {"$date_time", YdbValue.MakeDatetime(dateTime ?? DateTime.Now)},
         });
     }
 
@@ -72,7 +72,14 @@ public class MessageDateRepo
         return rows.First()["last_message_date"].GetOptionalDatetime();
     }
 
-    private static async Task CreateTable(IBotDatabase botDatabase)
+    public async Task ClearAll()
+    {
+        await botDatabase.ExecuteScheme($@"
+            DROP TABLE {TableName};
+        ");
+    }
+
+    public async Task CreateTable()
     {
         await botDatabase.ExecuteScheme($@"
             CREATE TABLE {TableName} (

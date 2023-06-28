@@ -78,6 +78,21 @@ public class S3MessageDetailsBucket : IMessageDetailsBucket
         }
     }
 
+    public async Task ClearChatMessages(long chatId)
+    {
+        var filename = GetFilename(chatId);
+        var response = await objectService.DeleteAsync(filename);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw S3ApiException.FromResult(
+                response.ToResult(),
+                HttpMethod.Delete,
+                filename
+            );
+        }
+    }
+
     private static string GetFilename(long chatId)
     {
         return $"{chatId}.json";

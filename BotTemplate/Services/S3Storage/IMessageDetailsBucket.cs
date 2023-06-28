@@ -6,4 +6,5 @@ public interface IMessageDetailsBucket
 {
     Task<List<Message>> GetMessages(long chatId);
     Task AddMessage(long chatId, Message message);
+    Task ClearChatMessages(long chatId);
 }

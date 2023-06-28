@@ -25,6 +25,8 @@ public class Response
 
 public class TelegramHandler : YcFunction<string, Response>
 {
+    private const string CodePath = "/function/code/";
+    
     public Response FunctionHandler(string request, Context context)
     {
         var logger = new ConsoleLogger();
@@ -43,7 +45,7 @@ public class TelegramHandler : YcFunction<string, Response>
 
     private async Task HandleRequest(string request, Context context)
     {
-        var configuration = new Configuration();
+        var configuration = Configuration.FromJson(CodePath + "settings.json");
         var tgClient = new TelegramBotClient(configuration.TelegramToken);
         var body = JObject.Parse(request).GetValue("body")!.Value<string>()!;
         var update = JsonConvert.DeserializeObject<Update>(body)!;
