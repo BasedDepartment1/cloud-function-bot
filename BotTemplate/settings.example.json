@@ -1,8 +1,8 @@
 {
   "AppSettings": {
     "TelegramToken": "TELEGRAM_TOKEN",
-    "YDBEndpoint": "protocol://domain:port",
-    "YDBPath": "/zone/blablabla/id"
+    "YdbEndpoint": "protocol://domain:port",
+    "YdbPath": "/zone/blablabla/id"
   },
   "CloudStorageOptions": {
     "Bucket": "object-storage-bucket-name",

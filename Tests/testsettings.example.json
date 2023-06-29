@@ -1,7 +1,7 @@
 {
   "AppSettings": {
-    "YDBEndpoint": "protocol://domain:port",
-    "YDBPath": "/zone/blablabla/id",
+    "YdbEndpoint": "protocol://domain:port",
+    "YdbPath": "/zone/blablabla/id",
     "IamTokenPath": "abs/path/to/iamfile.txt"
   },
   "CloudStorageOptions": {
