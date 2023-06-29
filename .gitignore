@@ -7,3 +7,4 @@ riderModule.iml
 BotTemplate/settings.json
 Tests/testsettings.json
 iamfile.txt
+deploy.cmd
